@@ -6,7 +6,7 @@ import {Link, useLocation} from "react-router-dom";
 const {Header} = Layout
 
 export const NavBar: React.FC = () => {
-    let location = useLocation()
+    const location = useLocation()
     return (
         <Header style={{background: "white"}}>
             <Row justify={'center'}>
@@ -20,7 +20,10 @@ export const NavBar: React.FC = () => {
                     >
                         {
                             routes.map(({path, name, icon}) => (
-                                <Menu.Item key={path} icon={icon}>
+                                <Menu.Item
+                                    key={path}
+                                    icon={icon}
+                                >
                                     <Link to={path}>{name}</Link>
                                 </Menu.Item>
                             ))
