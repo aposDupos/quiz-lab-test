@@ -11,6 +11,7 @@ import {
     REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import preloadedState from "./preloadedState";
 
 const persistConfig = {
     key: 'root',
@@ -18,7 +19,6 @@ const persistConfig = {
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
-
 const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
@@ -27,6 +27,7 @@ const store = configureStore({
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
         }),
+    preloadedState
 });
 export const persistor = persistStore(store)
 export type AppDispatch = typeof store.dispatch;

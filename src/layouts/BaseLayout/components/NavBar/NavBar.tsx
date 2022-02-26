@@ -19,12 +19,12 @@ export const NavBar: React.FC = () => {
                         }}
                     >
                         {
-                            routes.map(({path, name, icon}) => (
+                            Object.keys(routes).map((key) => (
                                 <Menu.Item
-                                    key={path}
-                                    icon={icon}
+                                    key={key}
+                                    icon={routes[key].icon}
                                 >
-                                    <Link to={path}>{name}</Link>
+                                    <Link to={routes[key].path}>{routes[key].name}</Link>
                                 </Menu.Item>
                             ))
                         }

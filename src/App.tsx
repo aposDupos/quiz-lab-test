@@ -5,24 +5,24 @@ import BaseLayout from "./layouts/BaseLayout/BaseLayout";
 import AuthLayout from "./layouts/AuthLayout/AuthLayout";
 import AuthPage from "./pages/AuthPage";
 
-function App() {
+const App: React.FC = () => {
     return (
         <Routes>
             <Route element={<BaseLayout/>}>
                 <Route index element={<AuthPage/>}/>
                 <Route element={<AuthLayout/>}>
-                    {
-                        routes
-                            .filter(({path}) => path !== '/')
-                            .map(({path, element}) => (
-                                <Route
-                                    key={path}
-                                    path={path}
-                                    element={element}
-                                />
-                            ))
-                    }
+                    <Route element={routes.posts.element} path={routes.posts.path}/>
+                    <Route element={routes.profile.element} path={routes.profile.path}>
+                        <Route element={routes.profile.element} path={':profileId'}/>
+                    </Route>
+                    <Route element={routes.subscribes.element} path={routes.subscribes.path}/>
                 </Route>
+                <Route
+                    path={"*"}
+                    element={
+                        <p>Здесь ничего нет</p>
+                    }
+                />
             </Route>
         </Routes>
     );

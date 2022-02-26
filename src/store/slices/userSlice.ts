@@ -1,6 +1,5 @@
 import {
-    createEntityAdapter,
-    createSlice, PayloadAction,
+    createSlice,
 } from '@reduxjs/toolkit'
 import IUser from "./interfaces/IUser";
 
