@@ -1,7 +1,7 @@
-import useAppDispatch from "../../../hooks/useAppDispatch";
-import {postUpdated, selectPostById} from "../../../store/slices/postsSlice";
-import useAppSelector from "../../../hooks/useAppSelector";
-import {selectUserById} from "../../../store/slices/usersSlice";
+import {selectUserById} from "../../../../store/slices/users/selectors";
+import {useAppDispatch, useAppSelector} from "../../../../hooks";
+import {postUpdated} from "../../../../store/slices/posts/postsSlice";
+import {selectPostById} from "../../../../store/slices/posts/selectors";
 
 const useGetPostInfo = (id) => {
     const dispatch = useAppDispatch()
