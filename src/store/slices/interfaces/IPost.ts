@@ -1,7 +1,7 @@
 export interface IPost {
-    id: number
-    author: number
+    id: string
+    author: string
     text: string
-    likes: number[]
+    likes: string[]
     createdAt: string
 }

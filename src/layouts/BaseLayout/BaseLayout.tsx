@@ -4,24 +4,26 @@ import {Outlet} from "react-router-dom";
 import NavBar from "./components/NavBar";
 
 const {Content, Footer} = Layout
-const BaseLayout: React.FC = () => {
+
+export const BaseLayout: React.FC = () => {
     return (
-        <Layout style={{height: '100vh'}}>
+        <Layout style={{minHeight: '100vh'}}>
             <NavBar/>
             <Content style={{
                 padding: '64px',
-                width: '100%', height: '100%'
+                width: '100%',
             }}>
-                <Row style={{height: '100%'}} align={'middle'} justify={'center'}>
-                    <Col span={24}>
+                <Row justify={'center'}>
+                    <Col span={16} lg={12} sm={24}>
                         <Outlet/>
                     </Col>
                 </Row>
             </Content>
             <Footer>
+                <Row justify={'center'}>
                 2022
+                </Row>
             </Footer>
         </Layout>
     )
 }
-export default BaseLayout

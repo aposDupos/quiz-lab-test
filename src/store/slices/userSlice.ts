@@ -1,14 +1,9 @@
 import {
     createSlice,
 } from '@reduxjs/toolkit'
-import IUser from "./interfaces/IUser";
 
-const initialState: IUser & { isAuthed: boolean } = {
-    id: -1,
-    name: '',
-    subscribers: [],
-    subscribes: [],
-    posts: [],
+const initialState: { id: string, isAuthed: boolean } = {
+    id: '',
     isAuthed: false
 }
 const userSlice = createSlice({
@@ -16,9 +11,9 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         userAuth: (state, action) => {
-            return {...action.payload, isAuthed: true}
+            return {id: action.payload, isAuthed: true}
         },
-        userRemove: () => initialState
+        userRemove: () => initialState,
     }
 })
 

@@ -2,11 +2,10 @@ import {
     createEntityAdapter,
     createSlice, PayloadAction,
 } from '@reduxjs/toolkit'
-import IUser from "./interfaces/IUser";
-import {RootState} from "./index";
+import IUser from "../interfaces/IUser";
 
 export const usersAdapter = createEntityAdapter<IUser>({
-    sortComparer: (a, b) => a.id - b.id,
+    sortComparer: (a, b) => a.id.localeCompare(b.id),
 });
 
 const usersSlice = createSlice({
@@ -16,19 +15,15 @@ const usersSlice = createSlice({
         userAdded: usersAdapter.addOne,
         usersReceived: (state, action: PayloadAction<IUser[]>) => {
             usersAdapter.setAll(state, action.payload)
-        }
+        },
+        userUpdated: usersAdapter.updateOne
     }
 })
 
 export const {
     userAdded,
-    usersReceived
+    usersReceived,
+    userUpdated
 } = usersSlice.actions
-export const {
-    selectById: selectUserById,
-    selectIds: selectUserIds,
-    selectEntities: selectUserEntities,
-    selectAll: selectAllUsers,
-    selectTotal: selectTotalUsers
-} = usersAdapter.getSelectors<RootState>(state => state.users)
+
 export default usersSlice.reducer

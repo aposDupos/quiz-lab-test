@@ -1,7 +1,7 @@
 export default interface IUser {
-    id: number
+    id: string
     name: string
-    subscribes: number[]
-    subscribers: number[]
-    posts: number[]
+    subscribes: string[]
+    subscribers: string[]
+    posts: string[]
 }

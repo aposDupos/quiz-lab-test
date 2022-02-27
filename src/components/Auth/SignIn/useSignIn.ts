@@ -1,19 +1,20 @@
-import useAppSelector from "../../../hooks/useAppSelector";
-import {selectAllUsers, userAdded} from "../../../store/slices/usersSlice";
-import useAppDispatch from "../../../hooks/useAppDispatch";
 import {userAuth} from "../../../store/slices/userSlice";
 import IUser from "../../../store/slices/interfaces/IUser";
 import {useNavigate} from "react-router-dom";
+import {useAppDispatch, useAppSelector, useGenerateId} from "../../../hooks";
+import {selectAllUsers} from "../../../store/slices/users/selectors";
+import {userAdded} from "../../../store/slices/users/usersSlice";
 
 const useSignIn = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const users = useAppSelector(selectAllUsers)
-    const newId = users.length + 1
-    const login = ({name}: { name: string }) => {
+    const newId = useGenerateId()
+
+    return ({name}: { name: string }) => {
         const currUser = users.find(item => item.name === name)
         if (currUser) {
-            dispatch(userAuth(currUser))
+            dispatch(userAuth(currUser.id))
         } else {
             const initialUser: IUser = {
                 id: newId,
@@ -23,10 +24,9 @@ const useSignIn = () => {
                 posts: []
             }
             dispatch(userAdded(initialUser))
-            dispatch(userAuth(initialUser))
+            dispatch(userAuth(initialUser.id))
         }
-        navigate('posts')
+        navigate('/posts')
     }
-    return login
 }
 export default useSignIn

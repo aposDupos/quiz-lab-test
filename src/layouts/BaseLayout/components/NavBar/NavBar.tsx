@@ -1,7 +1,7 @@
 import React from "react";
 import {Col, Layout, Menu, Row} from "antd";
-import routes from "../../../../utils/routes/routes";
 import {Link, useLocation} from "react-router-dom";
+import routes from "../../../../utils/routes";
 
 const {Header} = Layout
 
@@ -14,19 +14,20 @@ export const NavBar: React.FC = () => {
                     <Menu
                         selectedKeys={[location.pathname]}
                         mode={"horizontal"}
-                        style={{
-                            justifyContent: "center"
-                        }}
+                        style={{justifyContent: "center"}}
                     >
                         {
-                            Object.keys(routes).map((key) => (
-                                <Menu.Item
-                                    key={key}
-                                    icon={routes[key].icon}
+                            Object.keys(routes).map((key) => {
+                                const route = routes[key]
+                                return <Menu.Item
+                                    key={route.path}
+                                    icon={route.icon}
                                 >
-                                    <Link to={routes[key].path}>{routes[key].name}</Link>
+                                    <Link to={route.path}>
+                                        {route.name}
+                                    </Link>
                                 </Menu.Item>
-                            ))
+                            })
                         }
                     </Menu>
                 </Col>

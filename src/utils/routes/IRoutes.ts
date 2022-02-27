@@ -3,7 +3,6 @@ export enum RoutesEnum {
     auth = 'auth',
     posts = 'posts',
     profile = 'profile',
-    subscribes = 'subscribes'
 }
 export interface IRoutes {
     path: string
